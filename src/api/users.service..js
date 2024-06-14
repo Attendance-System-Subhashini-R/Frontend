@@ -27,6 +27,14 @@ const userService = {
     } catch (error) {
       throw error;
     }
+  },
+  editTimeFrame:async(id, payload)=>{
+    try {
+      const response = await axiosInstance.patch(`/attendance/update-time?id=${id}`, payload);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
 };

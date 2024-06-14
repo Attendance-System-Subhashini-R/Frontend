@@ -11,12 +11,9 @@ const ClockIn = () => {
     try {
       const response = await userService.getDashboradData();
       const currentDate = new Date().toISOString().split("T")[0];
-      console.log(response.data, ">>")
       const filteredData = response.data.filter(
         (entry) => entry.date === currentDate
       );
-      console.log(filteredData, ">>")
-
 
       if (filteredData.length > 0) {
         setDashboardData(filteredData);
@@ -34,11 +31,9 @@ const ClockIn = () => {
   }
 
   useEffect(() => {
-      fetchDashboardData();
+    fetchDashboardData();
     getCurrentDate();
   }, []);
-
- 
 
   const getCurrentDate = () => {
     const date = new Date().toLocaleDateString(undefined, {
@@ -108,10 +103,14 @@ const ClockIn = () => {
             {dashboardData.map((entry) => (
               <tr key={entry.id} className="border-b">
                 <td className="py-3 px-4 text-black">
-                  {entry.inTime ? new Date(entry.inTime).toLocaleTimeString() : "N/A" || "N/A"}
+                  {entry.inTime
+                    ? new Date(entry.inTime).toLocaleTimeString()
+                    : "N/A" || "N/A"}
                 </td>
                 <td className="py-3 px-4 text-black">
-                  {entry.outTime ? new Date(entry.outTime).toLocaleTimeString() : "N/A" || "N/A"}
+                  {entry.outTime
+                    ? new Date(entry.outTime).toLocaleTimeString()
+                    : "N/A" || "N/A"}
                 </td>
               </tr>
             ))}
