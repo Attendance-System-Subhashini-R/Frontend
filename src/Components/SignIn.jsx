@@ -20,7 +20,7 @@ export default function SignIn() {
     try {
       let data = await userService.loginUser(payload);
       localStorage.setItem("user_token", data.token);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       setError("Login failed. Please try again.");
     }

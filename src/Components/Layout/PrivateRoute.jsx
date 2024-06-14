@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
 import Dashboard from "../Dashboard";
 import { getLocalStorageItem } from "../../services/localStorageServices";
+import Navbar from "../Navbar";
 // import NavBar from "../Nav/NavBar";
 export const PrivateRoute = () => {
-  let getToken = getLocalStorageItem("user_token");
+  let getToken = localStorage.getItem("user_token");
 
   return (
     <div>
@@ -11,8 +12,9 @@ export const PrivateRoute = () => {
         <Navigate to="/login" />
       ) : (
         <div className="justify-between flex flex-col ">
-          {/* <NavBar /> */}
-          <Dashboard />
+          <Navbar />
+          {/* <Dashboard /> */}
+
           <Outlet />
         </div>
       )}

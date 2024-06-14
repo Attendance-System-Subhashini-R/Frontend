@@ -4,10 +4,13 @@ import {
   Route,
   RouterProvider,
   Routes,
+  Navigate,
 } from "react-router-dom";
 import SignIn from "./Components/SignIn";
 import { PrivateRoute } from "./Components/Layout/PrivateRoute";
 import Dashboard from "./Components/Dashboard";
+import ClockIn from "./Components/ClockIn";
+let getToken = localStorage.getItem("user_token");
 
 function App() {
   return (
@@ -15,15 +18,15 @@ function App() {
       <Router basename="/">
         <Routes>
           <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            {/* <Route path="/getOrgById/:id" element={<Orgs />} /> */}
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/clockin" element={<ClockIn />} />
           </Route>
-          <Route path="/login" element={<SignIn />} />
+          <Route
+            path="/login"
+            element={getToken == null ? <SignIn /> : <Navigate to="/" />}
+          />
         </Routes>
       </Router>
-
-      {/* <SignIn /> */}
-      <Dashboard />
     </div>
   );
 }
